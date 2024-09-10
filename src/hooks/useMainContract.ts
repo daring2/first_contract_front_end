@@ -9,6 +9,9 @@ import { useTonConnect } from "./useTonConnect";
 export function useMainContract() {
   const client = useTonClient();
   const { sender } = useTonConnect();
+
+  const sleep = (time: number) =>
+    new Promise((resolve) => setTimeout(resolve, time));
   
   const [contractData, setContractData] = useState<null | {
     counter_value: number;
@@ -37,6 +40,9 @@ export function useMainContract() {
       });
       const balance = await mainContract.getBalance();
       setBalance(balance.number);
+      
+      await sleep(5000); // sleep 5 seconds and poll value again
+      getValue();
     }
     getValue();
   }, [mainContract]);
