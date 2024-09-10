@@ -8,6 +8,7 @@ function App() {
     contract_address,
     contract_balance,
     sendIncrement,
+    sendDeposit,
     counter_value,
     recent_sender,
     owner_address,
@@ -32,11 +33,18 @@ function App() {
           <div>{counter_value ?? "Loading..."}</div>
         </div>
         <div className='Card'>
-            {connected && (
-              <a onClick={() => { sendIncrement(); }}>
-                Increment
-              </a>
-            )}
+          {connected && (
+            <a onClick={() => { sendIncrement(); }}>
+              Increment by 3
+            </a>
+          )}
+        </div>
+        <div className='Card'>
+          {connected && (
+            <a onClick={() => { sendDeposit(); }}>
+              Deposit of 0.5 TON
+            </a>
+          )}
         </div>
       </div>
     </div>
